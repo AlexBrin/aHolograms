@@ -98,7 +98,6 @@ class Hologram implements JsonSerializable
     public function setText(array $text)
     {
         $this->text = $text;
-        $this->textCount = count($text);
     }
 
     public function getLineOffset(): float
@@ -128,6 +127,7 @@ class Hologram implements JsonSerializable
      */
     public function create(bool $send = true): ?array
     {
+        $this->recalculateTextCount();
         $packets = [];
         for ($i = 0; $i < $this->textCount; $i++) {
             $packets[] = $this->createAddPacket($this->entityIds[$i], $this->text[$i]);
