@@ -1,0 +1,5 @@
+# The spacing between lines
+# Default: 0.35
+# Отступы между строками
+# По-умолчанию: 0.35
+lineOffset: 0.35
