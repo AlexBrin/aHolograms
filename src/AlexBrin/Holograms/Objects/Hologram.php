@@ -117,6 +117,10 @@ class Hologram implements JsonSerializable
         $this->pos->y += $this->getLineOffset() * $this->textCount;
     }
 
+    public function recalculateTextCount() {
+        $this->textCount = count($this->text);
+    }
+
     /**
      * @param bool $send
      *
