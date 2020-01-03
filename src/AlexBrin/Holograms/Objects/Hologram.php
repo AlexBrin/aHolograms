@@ -105,19 +105,11 @@ class Hologram implements JsonSerializable
         return Holograms::getInstance()->getConfig()->get('lineOffset', 0.35);
     }
 
-    public function resetY()
-    {
-        $this->pos->y = $this->sourceY;
-    }
-
     protected function recalculateY()
     {
-        $this->resetY();
-        $this->pos->y += $this->getLineOffset() * $this->textCount;
-    }
-
-    public function recalculateTextCount() {
         $this->textCount = count($this->text);
+        $this->pos->y = $this->sourceY;
+        $this->pos->y += $this->getLineOffset() * $this->textCount;
     }
 
     /**
@@ -127,7 +119,7 @@ class Hologram implements JsonSerializable
      */
     public function create(bool $send = true): ?array
     {
-        $this->recalculateTextCount();
+        $this->recalculateY();
         $packets = [];
         for ($i = 0; $i < $this->textCount; $i++) {
             $packets[] = $this->createAddPacket($this->entityIds[$i], $this->text[$i]);
