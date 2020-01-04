@@ -4,6 +4,7 @@ namespace AlexBrin\Holograms;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\Player;
 
@@ -30,6 +31,13 @@ class EventHandler implements Listener
     public function onPlayerRespawn(PlayerRespawnEvent $event)
     {
         $this->send($event->getPlayer());
+    }
+
+    public function onPlayerQuit(PlayerQuitEvent $event) {
+        $playerName = $event->getPlayer()->getName();
+        if(isset($this->loadedPlayers[$playerName])) {
+            unset($this->loadedPlayers[$playerName]);
+        }
     }
 
     private function send(Player $player)
