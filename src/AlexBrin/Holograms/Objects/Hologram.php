@@ -107,7 +107,14 @@ class Hologram implements JsonSerializable
 
     protected function recalculateY()
     {
-        $this->textCount = count($this->text);
+        $newTextCount = count($this->text);
+        if($this->textCount < $newTextCount) {
+            for($i = 0; $i < ($newTextCount - $this->textCount); $i++) {
+                $this->entityIds[] = Entity::$entityCount++;
+            }
+        }
+
+        $this->textCount = $newTextCount;
         $this->pos->y = $this->sourceY;
         $this->pos->y += $this->getLineOffset() * $this->textCount;
     }
