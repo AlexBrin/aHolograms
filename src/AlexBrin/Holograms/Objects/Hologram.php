@@ -230,7 +230,7 @@ class Hologram implements JsonSerializable
                 'level' => $this->getLevelName(),
                 'x' => $this->pos->x,
                 'y' => $this->sourceY,
-                'z' => $this->pos->x,
+                'z' => $this->pos->z,
             ]
         ];
     }
