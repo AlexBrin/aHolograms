@@ -163,7 +163,7 @@ class Hologram implements JsonSerializable
     public function update()
     {
         $this->recalculateY();
-        $this->broadcast(array_merge($this->destroy(false), $this->create(false));
+        $this->broadcast(array_merge($this->destroy(false), $this->create(false)));
     }
 
     /**
